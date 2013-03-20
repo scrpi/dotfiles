@@ -13,18 +13,18 @@ def find_valid_files():
 
 def create_symlink(f):
     home_dir = os.path.expanduser("~")
-    link = ".{}".format(f)
-    target = "{}{}".format(f, SUFFIX)
+    link = "." + f
+    target = f + SUFFIX
     if not os.path.lexists(os.path.join(home_dir, link)):
-        print "Creating link \"{}\" to target \"{}\".".format(link, target)
+        print "Creating link \"" + link + "\" to target \"" + target + "\"."
         os.symlink(DOTFILES_DIR + target, os.path.join(home_dir, link))
     else:
-        print "{} already exists in home directory.".format(link)
+        print "%s already exists in home directory." % link
 
 if __name__ == "__main__":
     dir_list = find_valid_files()
 
-    print "Found {} files/directories that can be symlinked".format(len(dir_list))
+    print "Found %d files/directories that can be symlinked" % len(dir_list)
 
     for f in dir_list:
         link_name = f[:len(f)-len(SUFFIX)]
