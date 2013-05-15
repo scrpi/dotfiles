@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 
 import os
+import sys
 
 SUFFIX =       ".symlink"
 DOTFILES_DIR = "dotfiles/"
+    
+HOME_DIR = os.path.expanduser("~")
+if len(sys.argv) > 1: HOME_DIR = sys.argv[1]
 
 def find_valid_files():
     ls = os.listdir(".")
@@ -14,12 +18,11 @@ def find_valid_files():
     return new_list
 
 def create_symlink(f):
-    home_dir = os.path.expanduser("~")
     link = "." + f
     target = f + SUFFIX
-    if not os.path.lexists(os.path.join(home_dir, link)):
+    if not os.path.lexists(os.path.join(HOME_DIR, link)):
         print "Creating link \"" + link + "\" to target \"" + target + "\"."
-        os.symlink(DOTFILES_DIR + target, os.path.join(home_dir, link))
+        os.symlink(DOTFILES_DIR + target, os.path.join(HOME_DIR, link))
     else:
         print "%s already exists in home directory." % link
 
