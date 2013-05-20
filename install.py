@@ -10,7 +10,7 @@ HOME_DIR = os.path.expanduser("~")
 if len(sys.argv) > 1: HOME_DIR = sys.argv[1]
 
 def find_valid_files():
-    ls = os.listdir(os.path.join(HOME_DIR, "dotfiles"))
+    ls = os.listdir(os.path.join(HOME_DIR, DOTFILES_DIR))
     new_list = []
     for f in ls:
         if len(f) > len(SUFFIX) and f[-len(SUFFIX):] == ".symlink":
