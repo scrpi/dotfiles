@@ -4,7 +4,7 @@ import os
 import sys
 
 SUFFIX =       ".symlink"
-DOTFILES_DIR = "dotfiles/"
+DOTFILES_DIR = "dotfiles"
     
 HOME_DIR = os.path.expanduser("~")
 if len(sys.argv) > 1: HOME_DIR = sys.argv[1]
@@ -22,7 +22,7 @@ def create_symlink(f):
     target = f + SUFFIX
     if not os.path.lexists(os.path.join(HOME_DIR, link)):
         print "Creating link \"" + link + "\" to target \"" + target + "\"."
-        os.symlink(DOTFILES_DIR + target, os.path.join(HOME_DIR, link))
+        os.symlink(os.path.join(DOTFILES_DIR, target), os.path.join(HOME_DIR, link))
     else:
         print "%s already exists in home directory." % link
 
