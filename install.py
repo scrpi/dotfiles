@@ -34,3 +34,5 @@ if __name__ == "__main__":
     for f in dir_list:
         link_name = f[:len(f)-len(SUFFIX)]
         create_symlink(link_name)
+
+    os.system("git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim")
