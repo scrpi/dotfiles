@@ -12,16 +12,16 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-bufferline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
+
+Plugin 'nanotech/jellybeans.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,7 +55,8 @@ set autoindent          " copy indent from current line when starting a new line
 set ruler               " show line and column number
 syntax on               " syntax highlighting
 
-set number              " show line numbers
+set relativenumber      " show line numbers
+set number
 set nowrap              " don't automatically wrap on load
 set fo-=t               " don't automatically wrap text when typing
 
@@ -79,7 +80,7 @@ nmap ,d :b#<bar>bd#<CR>
 
 " Colour Scheme
 set t_Co=256
-color twilight256
+color jellybeans
 
 " ctags stuff
 set tags=.tags;/
@@ -89,6 +90,7 @@ source ~/.vimrc_ctags
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
+let g:airline#extensions#whitespace#enabled = 0
 
 " vim-gitgutter
 set updatetime=250
@@ -137,3 +139,12 @@ let g:ycm_extra_conf_globlist = ['~/work/*', ]
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" (Hopefully) removes the delay when hitting esc in insert mode
+set noesckeys
+set ttimeout
+set ttimeoutlen=1
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·
+highlight SpecialKey ctermbg=16 ctermfg=235
