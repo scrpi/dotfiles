@@ -16,3 +16,6 @@ set -g default-terminal "screen-256color"
 
 set -g status-bg "#222222"
 set -g status-fg white
+
+bind -n S-Right next-window
+bind -n S-Left previous-window
