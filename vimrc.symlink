@@ -51,8 +51,24 @@ autocmd! bufwritepost .vimrc source %
 set pastetoggle=<F2>
 set clipboard=unnamed
 
-set tabstop=8           " use 4 spaces to represent tab
-"set shiftwidth=4        " number of spaces to use for auto indent
+" Tab/space handling
+set tabstop=8
+set shiftwidth=8
+set noexpandtab
+
+function TabToggle()
+    if &expandtab
+        set tabstop=8
+        set shiftwidth=8
+        set noexpandtab
+    else
+        set tabstop=4
+        set shiftwidth=4
+        set expandtab
+    endif
+endfunction
+nmap <F9> :execute TabToggle()<CR>
+
 set autoindent          " copy indent from current line when starting a new line
 
 set ruler               " show line and column number

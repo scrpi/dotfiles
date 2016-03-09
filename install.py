@@ -5,7 +5,7 @@ import sys
 
 SUFFIX =       ".symlink"
 DOTFILES_DIR = "dotfiles"
-    
+
 HOME_DIR = os.path.expanduser("~")
 if len(sys.argv) > 1: HOME_DIR = sys.argv[1]
 
