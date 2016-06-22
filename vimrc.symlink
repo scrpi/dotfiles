@@ -69,7 +69,8 @@ function TabToggle()
 endfunction
 nmap <F9> :execute TabToggle()<CR>
 
-set autoindent          " copy indent from current line when starting a new line
+set cindent
+set cinoptions+=g0
 
 set ruler               " show line and column number
 syntax on               " syntax highlighting
@@ -96,6 +97,11 @@ set noswapfile
 
 " delete buffers with ,d without closing split
 nmap ,d :b#<bar>bd#<CR>
+
+" Show trailing whitespace:
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 " Colour Scheme
 set t_Co=256
