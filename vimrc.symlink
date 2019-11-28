@@ -52,8 +52,8 @@ set pastetoggle=<F2>
 set clipboard=unnamed
 
 " Tab/space handling
-set tabstop=8
-set shiftwidth=8
+set tabstop=4
+set shiftwidth=4
 set noexpandtab
 
 function TabToggle()
@@ -109,7 +109,6 @@ color jellybeans
 
 " ctags stuff
 set tags=.tags;/
-source ~/.vimrc_ctags
 
 " Vim Airline stuff
 set laststatus=2
@@ -173,3 +172,9 @@ set ttimeoutlen=1
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
 highlight SpecialKey ctermbg=16 ctermfg=235
+
+" copy to buffer
+vmap <C-y> :w! ~/.vimbuffer<CR>
+nmap <C-y> :.w! ~/.vimbuffer<CR>
+" " paste from buffer
+map <C-o> :r ~/.vimbuffer<CR>
