@@ -15,3 +15,8 @@ cd dotfiles
 stow .
 ```
 
+## Installing tmux plugins
+
+1. Add new plugin to `~/.tmux.conf` with `set -g @plugin '...'`
+2. Press `prefix` + <kbd>I</kbd> (capital i, as in **I**nstall) to fetch the plugin.
+
