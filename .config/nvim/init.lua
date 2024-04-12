@@ -318,7 +318,7 @@ require('lazy').setup({
       -- Useful for getting pretty icons, but requires special font.
       --  If you already have a Nerd Font, or terminal set up with fallback fonts
       --  you can enable this
-      -- { 'nvim-tree/nvim-web-devicons' }
+      { 'nvim-tree/nvim-web-devicons' }
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -401,11 +401,11 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
-    ft = { 'rust' },
-  },
+  -- {
+  --   'mrcjkb/rustaceanvim',
+  --   version = '^4', -- Recommended
+  --   ft = { 'rust' },
+  -- },
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -730,6 +730,8 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
+    -- 'ellisonleao/gruvbox.nvim',
+    -- 'rebelot/kanagawa.nvim',
     'https://codeberg.org/FelipeLema/jellybeans.nvim.git',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -738,7 +740,7 @@ require('lazy').setup({
       -- Load the colorscheme here
       vim.cmd.colorscheme 'jellybeans'
       -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
 
@@ -813,6 +815,24 @@ require('lazy').setup({
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
+  },
+
+  {
+    'akinsho/bufferline.nvim',
+    config = function()
+      require('bufferline').setup({
+        options = {
+          mode = "tabs",
+        },
+      })
+    end
+  },
+
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
+    end,
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
