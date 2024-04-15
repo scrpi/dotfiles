@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Darcula Solid",
+    "editor.fontFamily": "'Iosevka - Extended', 'Droid Sans Mono', 'monospace', monospace",
+    "editor.fontSize": 18,
+    "markdown-preview-enhanced.enablePreviewZenMode": false,
+    "markdown-preview-enhanced.previewTheme": "github-dark.css",
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "rust-analyzer.lens.enable": false
+}
