@@ -1,6 +1,6 @@
 [font]
 size = 14.0
-normal = { family = "Iosevka Extended", style = "Regular" }
-bold = { family = "Iosevka Extended", style = "Bold" }
-italic = { family = "Iosevka Extended", style = "Italic" }
-bold_italic = { family = "Iosevka Extended", style = "Bold Italic" }
+normal = { family = "Iosevka Fixed", style = "Extended" }
+bold = { family = "Iosevka Fixed", style = "Extended Bold" }
+italic = { family = "Iosevka Fixed", style = "Extended Italic" }
+bold_italic = { family = "Iosevka Fixed", style = "Extended Bold Italic" }
