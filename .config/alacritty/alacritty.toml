@@ -1,6 +1,9 @@
 [font]
-size = 14.0
+size = 12.0
 normal = { family = "Iosevka Fixed", style = "Extended" }
 bold = { family = "Iosevka Fixed", style = "Extended Bold" }
 italic = { family = "Iosevka Fixed", style = "Extended Italic" }
 bold_italic = { family = "Iosevka Fixed", style = "Extended Bold Italic" }
+
+[colors.primary]
+background = "0x020202"
