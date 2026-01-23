@@ -1,7 +1,26 @@
+# PATH setup
+fish_add_path ~/.local/bin
+fish_add_path ~/.cargo/bin
+fish_add_path /usr/local/go/bin
+fish_add_path ~/go/bin
+fish_add_path /opt/nvim-linux-x86_64/bin
+
+# NVM setup (using nvm.fish or bass)
+set -gx NVM_DIR "$HOME/.nvm"
+if test -s "$NVM_DIR/nvm.sh"
+    # If you have bass installed: bass source "$NVM_DIR/nvm.sh"
+    # Otherwise, add the active node version directly:
+    if test -d "$NVM_DIR/versions/node"
+        set -l node_version (ls "$NVM_DIR/versions/node" | sort -V | tail -1)
+        if test -n "$node_version"
+            fish_add_path "$NVM_DIR/versions/node/$node_version/bin"
+        end
+    end
+end
+
 abbr -a ll ls -lah
 abbr -a glo git log --oneline
 abbr -a vi nvim
-
 
 if status is-interactive
     # Commands to run in interactive sessions can go here

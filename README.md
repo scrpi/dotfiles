@@ -59,6 +59,45 @@ brew install --cask alacritty
 curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info | tic -x -
 ```
 
+## Installing Neovim
+
+### Remove existing versions
+
+```bash
+# Remove apt version
+sudo apt remove neovim neovim-runtime
+
+# Remove snap version (if installed)
+sudo snap remove nvim
+
+# Remove manually installed versions
+sudo rm -f /usr/local/bin/nvim
+sudo rm -rf /usr/local/share/nvim
+```
+
+### Install latest version
+
+**Ubuntu/Debian:**
+```bash
+# Download latest release
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+
+# Extract to /opt
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+
+# Add to PATH (already in fish config)
+# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# Clean up
+rm nvim-linux-x86_64.tar.gz
+```
+
+**macOS:**
+```bash
+brew install neovim
+```
+
 ## VS Code
 
 Extensions are stored in `.config/Code/extensions.txt`. Use the fish function to manage them:
