@@ -2,7 +2,7 @@
 import = ["~/.config/alacritty/themes/base16-gruvbox-dark-hard.toml"]
 
 [font]
-size = 15.0
+size = 14.0
 normal = { family = "Iosevka", style = "Extended" }
 bold = { family = "Iosevka", style = "Extended Bold" }
 italic = { family = "Iosevka", style = "Extended Italic" }
