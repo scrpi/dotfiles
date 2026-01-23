@@ -89,5 +89,7 @@ function vscode-sync-extensions
     end
 end
 
-string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew (macOS only)
+if test -x /opt/homebrew/bin/brew
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+end
