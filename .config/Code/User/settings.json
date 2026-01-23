@@ -1,9 +1,54 @@
 {
-    "workbench.colorTheme": "Darcula Solid",
-    "editor.fontFamily": "'Iosevka - Extended', 'Droid Sans Mono', 'monospace', monospace",
-    "editor.fontSize": 18,
-    "markdown-preview-enhanced.enablePreviewZenMode": false,
-    "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "editor.inlayHints.enabled": "offUnlessPressed",
-    "rust-analyzer.lens.enable": false
+    "roo-cline.allowedCommands": [
+        "git log",
+        "git diff",
+        "git show",
+        "cargo",
+        "cd",
+        "iverilog",
+        "make",
+        "ls",
+        "pwd",
+        "git",
+        "go",
+        "npm test",
+        "npm install",
+        "tsc"
+    ],
+    "roo-cline.deniedCommands": [],
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "editor.fontFamily": "Iosevka Extended",
+    "editor.fontSize": 15,
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.fontFamily": "Iosevka Fixed Extended",
+    "terminal.integrated.fontLigatures.enabled": true,
+    "terminal.integrated.fontSize": 14,
+    "terminal.external.osxExec": "alacritty",
+    "makefile.configureOnOpen": true,
+    "go.toolsEnvVars": {},
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "workbench.commandPalette.experimental.enableNaturalLanguageSearch": false,
+    "chat.disableAIFeatures": true,
+    "rust-analyzer.restartServerOnConfigChange": true,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg/store/**": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true
+    }
 }

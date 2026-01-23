@@ -62,5 +62,17 @@ function fish_greeting
     set_color normal
 end
 
+# Sync VS Code extensions with dotfiles
+function vscode-sync-extensions
+    if test "$argv[1]" = "save"
+        code --list-extensions > ~/dotfiles/.config/Code/extensions.txt
+        echo "Saved "(wc -l < ~/dotfiles/.config/Code/extensions.txt | tr -d ' ')" extensions"
+    else if test "$argv[1]" = "install"
+        cat ~/dotfiles/.config/Code/extensions.txt | xargs -L 1 code --install-extension
+    else
+        echo "Usage: vscode-sync-extensions [save|install]"
+    end
+end
+
 string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)
 eval "$(/opt/homebrew/bin/brew shellenv)"
