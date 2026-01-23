@@ -41,19 +41,34 @@ function fish_greeting
     echo -e (hostname -s | awk '{print " \\\\e[1mHostname: \\\\e[0;32m"$0"\\\\e[0m"}')
     echo -e " \\e[1mDisk usage:\\e[0m"
     echo
-    echo -ne (\
-        df -lh | grep -E '/dev/disk' | \
-        awk '{printf "\\\\t%s\\\\t%4s / %4s  %s\\\\n\n", $9, $3, $2, $5}' | \
-        sed -e 's/^\(.*\([8][5-9]\|[9][0-9]\)%.*\)$/\\\\e[0;31m\1\\\\e[0m/' -e 's/^\(.*\([7][5-9]\|[8][0-4]\)%.*\)$/\\\\e[0;33m\1\\\\e[0m/' | \
-        paste -sd ''\
-    )
+    if test (uname) = "Darwin"
+        # macOS: show only root
+        echo -ne (df -lh / | tail -1 | awk '{printf "\\\\t%s\\\\t%4s / %4s  %s\\\\n", $9, $3, $2, $5}' | \
+            sed -e 's/^\(.*\([8][5-9]\|[9][0-9]\)%.*\)$/\\\\e[0;31m\1\\\\e[0m/' -e 's/^\(.*\([7][5-9]\|[8][0-4]\)%.*\)$/\\\\e[0;33m\1\\\\e[0m/')
+    else
+        # Linux: show real disks
+        echo -ne (\
+            df -lh | grep -E '/dev/(sd|nvme|mapper)' | \
+            awk '{printf "\\\\t%s\\\\t%4s / %4s  %s\\\\n\n", $6, $3, $2, $5}' | \
+            sed -e 's/^\(.*\([8][5-9]\|[9][0-9]\)%.*\)$/\\\\e[0;31m\1\\\\e[0m/' -e 's/^\(.*\([7][5-9]\|[8][0-4]\)%.*\)$/\\\\e[0;33m\1\\\\e[0m/' | \
+            tr -d '\n'\
+        )
+    end
     echo
 
     echo -e " \\e[1mNetwork:\\e[0m"
     echo
-    for iface in (networksetup -listallhardwareports | awk '/Device:/{print $2}')
-        set ip (ipconfig getifaddr $iface 2>/dev/null)
-        if test -n "$ip"
+    if test (uname) = "Darwin"
+        # macOS
+        for iface in (networksetup -listallhardwareports | awk '/Device:/{print $2}')
+            set ip (ipconfig getifaddr $iface 2>/dev/null)
+            if test -n "$ip"
+                echo -e "\\t\\e[36m$iface\\e[0m\\t$ip"
+            end
+        end
+    else if command -q ip
+        # Linux
+        ip -4 addr show scope global | awk '/inet/{split($2,a,"/"); print a[1], $NF}' | while read ip iface
             echo -e "\\t\\e[36m$iface\\e[0m\\t$ip"
         end
     end
