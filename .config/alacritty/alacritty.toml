@@ -1,9 +1,9 @@
+[general]
+import = ["~/.config/alacritty/themes/base16-gruvbox-dark-hard.toml"]
+
 [font]
 size = 15.0
-normal = { family = "Iosevka", style = "Light Extended" }
-bold = { family = "Iosevka", style = "Light Extended Bold" }
-italic = { family = "Iosevka", style = "Light Extended Italic" }
-bold_italic = { family = "Iosevka", style = "Light Extended Bold Italic" }
-
-[colors.primary]
-background = "0x020202"
+normal = { family = "Iosevka", style = "Extended" }
+bold = { family = "Iosevka", style = "Extended Bold" }
+italic = { family = "Iosevka", style = "Extended Italic" }
+bold_italic = { family = "Iosevka", style = "Extended Bold Italic" }
