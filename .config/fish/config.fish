@@ -52,6 +52,57 @@ function fish_prompt
     set_color normal
 end
 
+# Async dotfiles status check - runs in background and caches result
+function __dotfiles_check_async
+    set -l dotfiles_dir ~/dotfiles
+    set -l cache_file ~/.cache/dotfiles_status
+
+    # Ensure cache dir exists
+    mkdir -p ~/.cache
+
+    # Fetch latest (the slow part)
+    git -C $dotfiles_dir fetch --quiet 2>/dev/null
+
+    # Check status
+    set -l ahead (git -C $dotfiles_dir rev-list @{u}..HEAD --count 2>/dev/null)
+    set -l behind (git -C $dotfiles_dir rev-list HEAD..@{u} --count 2>/dev/null)
+    set -l dirty (git -C $dotfiles_dir status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+
+    # Write cache
+    echo "$ahead $behind $dirty" > $cache_file
+end
+
+# Display cached dotfiles status
+function __dotfiles_status_display
+    set -l cache_file ~/.cache/dotfiles_status
+
+    if test -f $cache_file
+        read -l ahead behind dirty < $cache_file
+
+        set -l status_parts
+
+        if test "$dirty" -gt 0 2>/dev/null
+            set -a status_parts (set_color --bold black --background yellow)" $dirty uncommitted "(set_color normal)
+        end
+        if test "$ahead" -gt 0 2>/dev/null
+            set -a status_parts (set_color --bold white --background blue)" $ahead to push "(set_color normal)
+        end
+        if test "$behind" -gt 0 2>/dev/null
+            set -a status_parts (set_color --bold white --background red)" $behind to pull "(set_color normal)
+        end
+
+        if test (count $status_parts) -gt 0
+            echo
+            echo -e " \e[1mDotfiles:\e[0m "(string join " " $status_parts)
+            echo
+        end
+    end
+
+    # Kick off async update for next time
+    fish -c '__dotfiles_check_async' &
+    disown 2>/dev/null
+end
+
 # Informative greeting with system stats
 function fish_greeting
     echo
@@ -92,6 +143,9 @@ function fish_greeting
         end
     end
     echo
+
+    # Show dotfiles status (from cache) and trigger async update
+    __dotfiles_status_display
 
     set_color normal
 end
