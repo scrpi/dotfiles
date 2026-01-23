@@ -7,6 +7,25 @@ sudo apt install stow
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
+## Installing Fish Shell
+
+**Ubuntu/Debian:**
+```bash
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt update
+sudo apt install fish
+```
+
+**macOS:**
+```bash
+brew install fish
+```
+
+To set fish as your default shell:
+```bash
+chsh -s $(which fish)
+```
+
 ## Installation
 ```
 cd ~
@@ -20,9 +39,23 @@ stow .
 1. Add new plugin to `~/.tmux.conf` with `set -g @plugin '...'`
 2. Press `prefix` + <kbd>I</kbd> (capital i, as in **I**nstall) to fetch the plugin.
 
-## Alacritty terminfo
+## Installing Alacritty
 
+**Ubuntu/Debian:**
+```bash
+sudo add-apt-repository ppa:aslatter/ppa
+sudo apt update
+sudo apt install alacritty
 ```
+
+**macOS:**
+```bash
+brew install --cask alacritty
+```
+
+### Alacritty terminfo
+
+```bash
 curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info | tic -x -
 ```
 
